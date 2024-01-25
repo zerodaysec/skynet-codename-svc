@@ -13,5 +13,5 @@ jobs:
             python-version: 3.11
       - run: pip install pipenv pylint flake8
       - run: pipenv sync
-      - run: pylint **/*.py
+      - run: pipenv run pylint **/*.py
     #   - run: flake8
