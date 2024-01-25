@@ -1,5 +1,8 @@
+name: CI
+
 on: push
-name: on push
+
+
 jobs:
   gitHubActionForPylint:
     name: GitHub Action for pylint
