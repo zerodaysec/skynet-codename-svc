@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
             python-version: 3.11
-      - run: pip install pipenv python-pylint flake8
+      - run: pip install pipenv pylint flake8
       - run: pipenv sync
       - run: pylint **/*.py
     #   - run: flake8
