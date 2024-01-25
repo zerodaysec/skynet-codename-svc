@@ -2,14 +2,15 @@ name: CI
 
 on: push
 
-
 jobs:
   gitHubActionForPylint:
     name: GitHub Action for pylint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: GitHub Action for pylint
-        uses: cclauss/GitHub-Action-for-pylint@master
+      - uses: actions/setup-python@v5
         with:
-          args: pip install pipenv && pipenv sync && pylint **/*.py
+            python-version: 3.11
+      - run: pip install pipenv pylint flake8
+      - run: pipenv sync && pipenv run pylint **/*.py
+    #   - run: flake8
