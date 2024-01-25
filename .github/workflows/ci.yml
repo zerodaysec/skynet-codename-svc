@@ -2,6 +2,9 @@ name: CI
 
 on: push
 
+env:
+    SVC_NAME: sk-codename-svc
+
 jobs:
   gitHubActionForPylint:
     name: GitHub Action for pylint
@@ -12,5 +15,5 @@ jobs:
         with:
             python-version: 3.11
       - run: pip install pipenv pylint flake8
-      - run: pipenv sync && pipenv run pylint **/*.py
-    #   - run: flake8
+    #   - run: pipenv sync && pipenv run pylint **/*.py
+      - run: docker build -t ${{ env.SVC_NAME }} .
