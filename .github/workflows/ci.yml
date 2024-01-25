@@ -16,4 +16,9 @@ jobs:
             python-version: 3.11
       - run: pip install pipenv pylint flake8
     #   - run: pipenv sync && pipenv run pylint **/*.py
-      - run: docker build -t ${{ env.SVC_NAME }} .
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: user/app:latest
