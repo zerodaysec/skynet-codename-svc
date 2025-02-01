@@ -1,11 +1,14 @@
-FROM python:3.11
+FROM python:3.12
 
 WORKDIR /app
 
 # TODO: Need to enable pipenv
-# COPY requirements.txt /app/
-COPY app.py /app/
+COPY Pipfile /app/
+COPY Pipfile.lock /app/
+RUN python -m pip install pipenv \
+    && pipenv sync
+COPY /app/ /app/
 
 ENV FLASK_APP=app.py
 
-ENTRYPOINT ["flask", "run"]
+ENTRYPOINT ["pipenv","run","streamlit", "run", "app.py"]
